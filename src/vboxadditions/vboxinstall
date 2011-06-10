@@ -1,0 +1,10 @@
+#! /bin/bash
+# chkconfig: 2345 29 99
+# description: vboxinstall
+case "$1" in
+  *start)
+    /opt/VBoxLinuxAdditions/VBoxLinuxAdditions.run
+    chkconfig --del vboxinstall
+    init 0
+  ;;
+esac

@@ -1,0 +1,18 @@
+#! /bin/bash
+# chkconfig: 2345 29 99
+# description: vboxinstall-download
+VBOX_VERSION="4.0.8"
+VBOX_ISO="VBoxGuestAdditions_$VBOX_VERSION.iso"
+case "$1" in
+  *start)
+    if [ ! -s "/opt/VBoxLinuxAdditions/$VBOX_ISO" ]
+    then
+      wget "http://download.virtualbox.org/virtualbox/$VBOX_VERSION/$VBOX_ISO" -O "/opt/VBoxLinuxAdditions/$VBOX_ISO"
+    fi
+    mount -o loop "/opt/VBoxLinuxAdditions/$VBOX_ISO" /mnt
+    /mnt/VBoxLinuxAdditions.run
+    umount /mnt
+    chkconfig --del vboxinstall-download
+    init 0
+  ;;
+esac
