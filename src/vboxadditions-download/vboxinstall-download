@@ -1,7 +1,7 @@
 #! /bin/bash
 # chkconfig: 2345 29 99
 # description: vboxinstall-download
-VBOX_VERSION="4.0.8"
+VBOX_VERSION="${version}"
 VBOX_ISO="VBoxGuestAdditions_$VBOX_VERSION.iso"
 case "$1" in
   *start)

@@ -1,6 +1,6 @@
 Summary: VirtualBox guest additions downloader and installer
 Name: vboxadditions-download
-Version: 4.0.8
+Version: 4.1.0
 Release: %(echo ${BUILD_NUMBER:-1})
 License: GPL2
 Group: Applications/System
@@ -29,6 +29,7 @@ A shutdown is performed afterwards!
 
 %prep
 %setup -c -T
+sed -i 's|\${version}|%{version}|g' %{SOURCE0}
 
 %install
 mkdir -p %{buildroot}/opt/VBoxLinuxAdditions
@@ -47,5 +48,7 @@ chkconfig vboxinstall-download on
 %dir /opt/VBoxLinuxAdditions
 
 %changelog
+* Sun Aug 07 2011 https://github.com/AncientLeGrey - 4.1.0-1
+- Update to version 4.1.0
 * Fri May 29 2011 https://github.com/AncientLeGrey - 4.0.8-1
 - Initial revision
